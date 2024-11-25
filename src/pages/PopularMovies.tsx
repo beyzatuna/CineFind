@@ -1,15 +1,15 @@
-
 import { GetServerSideProps, NextPage } from 'next';
 import React, { useState } from 'react';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/SearchBar/SearchBar';
 import { useApi } from '../Context/ApiContext';
-import Link from 'next/link';
+import MovieCard from '../components/Card/MovieCard'; // MovieCard bileşenini içe aktarıyoruz.
+import '../styles/global.css';
 
 interface Movie {
   id: number;
-  title: string;
   poster_path: string;
   overview: string;
+  vote_average: number; 
 }
 
 interface PopularMoviesProps {
@@ -29,19 +29,15 @@ const PopularMovies: NextPage<PopularMoviesProps> = ({ popularMovies }) => {
     <div>
       <h1>Popular Movies</h1>
       <SearchBar onSearch={handleSearch} />
-
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div className="movie-container">
         {movies.map((movie) => (
-          <Link key={movie.id} href={`/${movie.id}`} passHref>
-            <div style={{ width: '200px', margin: '10px', cursor: 'pointer' }}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-                style={{ width: '100%' }}
-              />
-              <h2>{movie.title}</h2>
-            </div>
-          </Link>
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            posterPath={movie.poster_path}
+            overview={movie.overview}
+            vote_average={movie.vote_average}
+          />
         ))}
       </div>
     </div>

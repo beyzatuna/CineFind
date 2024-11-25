@@ -1,0 +1,104 @@
+/* Container for movie cards */
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+/* Movie card styling */
+.movie-card {
+  width: calc(25% - 20px); /* 4 kart yan yana */
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 8px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+}
+
+/* Image container with clickable link */
+.image-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 150%; /* 2:3 oranı */
+  overflow: hidden;
+  text-decoration: none;
+}
+
+
+.movie-poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Görsel orantısını korur */
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover .movie-poster {
+  transform: scale(1.05);  /* Resmi hafifçe büyütür */
+  filter: blur(5px);  /* Görseli bulanıklaştırır */
+}
+
+
+.movie-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7); /* Yarı saydam siyah arka plan */
+  color: #fff;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Işık efekti */
+
+}
+
+/* Hover durumunda daha belirgin hale gelir */
+.image-container:hover .movie-overlay {
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Daha güçlü ışık efekti */
+}
+.movie-rating {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.7); /* Saydam arka plan */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px; /* Oval şekil */
+  font-size: 1rem;
+  font-weight: bold;
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px 5px rgba(193, 255, 252, 0.558);
+}
+
+@media screen and (max-width: 768px) {
+  .movie-card {
+    width: calc(50% - 20px);  /* Kartları 2 sütun yapar */
+    height: auto;  /* Yüksekliği otomatik yaparak esnek hale getirir */
+  }
+}
+
+/* Çok küçük ekranlarda kartları tek sütun yapar */
+@media screen and (max-width: 480px) {
+  .movie-card {
+    width: 100%;  /* Kartları tam genişlikte yapar */
+    height: auto;  /* Yüksekliği otomatik yapar */
+  }
+}

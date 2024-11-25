@@ -23,7 +23,7 @@ const MovieDetails: NextPage<MovieDetailsProps> = ({ movie, cast, director, trai
     <div style={{ padding: '20px' }}>
       <h1>{movie.title}</h1>
       <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
         alt={movie.title}
         style={{ maxWidth: '300px' }}
       />
