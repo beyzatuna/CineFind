@@ -1,11 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-    margin: 70px;
-    padding: 0;
-    background-color: #121212; /* Arka plan rengini ayarlayın */
-    font-family: Arial, sans-serif; /* Genel yazı tipi */
-    background-image: url('/background-image.jpg'); /* Arka plan resmi */
-    background-size: cover; /* Resmi tam ekran kaplayacak şekilde ayarlar */
-    background-position: center; /* Resmi ortalar */
-    background-attachment: fixed; /* Kaydırma sırasında resmi sabit tutar */
+  margin-left:  60px;
+  margin-right: 60px;
+  padding: 0;
+  background-color: #121212;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    margin: 10px; 
   }
-  
+}
+
+.hover\:text-gray-400:hover {
+  color: #cccccc;
+}

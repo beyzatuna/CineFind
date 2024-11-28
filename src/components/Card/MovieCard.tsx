@@ -17,11 +17,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, posterPath, overview, vote_av
           alt="Movie Poster"
           className="movie-poster"
         />
-        <div className="movie-overlay">
-          <p className="movie-overview">{overview.slice(0, 100)}...</p>
-          <span className="movie-rating">
+         <span className="movie-rating">
             {vote_average !== undefined ? `${vote_average.toFixed(1)}` : 'Rating not available'}
           </span>
+        <div className="movie-overlay">
+          <p className="movie-overview">{overview.slice(0, 100)}...</p>
+         
         </div>
       </a>
     </div>

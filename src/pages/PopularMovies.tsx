@@ -1,9 +1,10 @@
 import { GetServerSideProps, NextPage } from 'next';
 import React, { useState } from 'react';
-import SearchBar from '../components/SearchBar/SearchBar';
 import { useApi } from '../Context/ApiContext';
 import MovieCard from '../components/Card/MovieCard'; // MovieCard bileşenini içe aktarıyoruz.
 import '../styles/global.css';
+import Navbar from "../components/NavBar/NavBar";
+
 
 interface Movie {
   id: number;
@@ -27,8 +28,8 @@ const PopularMovies: NextPage<PopularMoviesProps> = ({ popularMovies }) => {
 
   return (
     <div>
-      <h1>Popular Movies</h1>
-      <SearchBar onSearch={handleSearch} />
+     
+      <Navbar />
       <div className="movie-container">
         {movies.map((movie) => (
           <MovieCard
