@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSearchBar } from "./useSearchBar";
 
 interface SearchBarIndexProps {
@@ -8,14 +8,14 @@ interface SearchBarIndexProps {
 const SearchBarIndex: React.FC<SearchBarIndexProps> = ({ onSearch }) => {
   const { query, setQuery, handleSubmit } = useSearchBar(onSearch);
   const [placeholderText, setPlaceholderText] = useState("");
-  const typewriterTexts = [
+  const typewriterTextsRef = useRef([
     "A time-traveling adventure...",
     "Dark horror in an abandoned mansion...",
     "A sci-fi adventure in space...",
     "Thrilling detective mystery...",
-  ];
-  const typingSpeed = 60; 
-  const pauseBetweenTexts = 1500; 
+  ]);
+  const typingSpeed = 60;
+  const pauseBetweenTexts = 1500;
 
   useEffect(() => {
     let charIndex = 0;
@@ -24,12 +24,11 @@ const SearchBarIndex: React.FC<SearchBarIndexProps> = ({ onSearch }) => {
     let timeout: NodeJS.Timeout;
 
     const type = () => {
-      const currentText = typewriterTexts[textIndex];
+      const currentText = typewriterTextsRef.current[textIndex];
       if (!isDeleting) {
         setPlaceholderText(currentText.substring(0, charIndex + 1));
         charIndex++;
         if (charIndex === currentText.length) {
-
           isDeleting = true;
           timeout = setTimeout(type, pauseBetweenTexts);
           return;
@@ -39,7 +38,7 @@ const SearchBarIndex: React.FC<SearchBarIndexProps> = ({ onSearch }) => {
         charIndex--;
         if (charIndex === 0) {
           isDeleting = false;
-          textIndex = (textIndex + 1) % typewriterTexts.length;
+          textIndex = (textIndex + 1) % typewriterTextsRef.current.length;
         }
       }
       timeout = setTimeout(type, typingSpeed);
@@ -47,8 +46,8 @@ const SearchBarIndex: React.FC<SearchBarIndexProps> = ({ onSearch }) => {
 
     type();
 
-    return () => clearTimeout(timeout); 
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [pauseBetweenTexts, typingSpeed]); // Eklenmesi gereken bağımlılıklar
 
   return (
     <div className="relative w-full max-w-2xl">

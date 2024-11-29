@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ['image.tmdb.org'], // Buraya izin verilen host adını ekleyin
+  },
+
 };
 
 export default nextConfig;

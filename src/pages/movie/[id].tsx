@@ -1,8 +1,8 @@
 import { GetServerSideProps, NextPage } from 'next';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './[id].module.css';
 import Navbar from '../../components/NavBar/NavBar';
-import { useApi } from '@/Context/ApiContext';
+import Image from 'next/image';
 
 interface MovieDetailsProps {
   movie: {
@@ -13,38 +13,25 @@ interface MovieDetailsProps {
     vote_average: number;
   };
   cast: Array<{ name: string; character: string; profile_path: string }>;
-  director: { name: string; profile_path: string };
   trailerKey: string | null;
 }
 
-const MovieDetails: NextPage<MovieDetailsProps> = ({ movie, cast, director, trailerKey }) => {
-  const { searchMovies } = useApi();
-  const [movies, setMovies] = useState([]);
-
-  const handleSearch = async (query: string) => {
-    try {
-      const data = await searchMovies(query);
-      setMovies(data.results || []);
-    } catch (error) {
-      console.error('Error searching movies:', error);
-    }
-  };
-
+const MovieDetails: NextPage<MovieDetailsProps> = ({ movie, cast, trailerKey }) => {
   if (!movie) {
     return <h1>Movie not found</h1>;
   }
 
   return (
-    
     <div className={styles.container}>
-     
       <Navbar />
       <div className={styles.header}>
         <div className={styles.posterContainer}>
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w780${movie.poster_path}`}
             alt={movie.title}
             className={styles.poster}
+            width={780}
+            height={1170}
           />
         </div>
         <div className={styles.details}>
@@ -61,7 +48,6 @@ const MovieDetails: NextPage<MovieDetailsProps> = ({ movie, cast, director, trai
         </div>
       </div>
 
-   
       <div className={styles.cast}>
         <h3>Cast</h3>
         <div className={styles.carousel}>
@@ -69,10 +55,12 @@ const MovieDetails: NextPage<MovieDetailsProps> = ({ movie, cast, director, trai
             cast.map((actor, index) => (
               <div key={index} className={styles.actor}>
                 {actor.profile_path ? (
-                  <img
+                  <Image
                     src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
                     alt={actor.name}
                     className={styles.actorPhoto}
+                    width={200}
+                    height={300}
                   />
                 ) : (
                   <p>No photo available</p>
@@ -83,7 +71,6 @@ const MovieDetails: NextPage<MovieDetailsProps> = ({ movie, cast, director, trai
             ))}
         </div>
       </div>
-
 
       {trailerKey && (
         <div className={styles.trailer}>
@@ -118,21 +105,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const credits = await resCredits.json();
 
     const cast = credits.cast.slice(0, 10);
-    const director = credits.crew.find((member: any) => member.job === 'Director') || {};
 
     const resVideos = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`);
     if (!resVideos.ok) {
       throw new Error('Failed to fetch movie videos');
     }
     const videos = await resVideos.json();
-    const trailer = videos.results.find((video: any) => video.type === 'Trailer') || null;
+    const trailer = videos.results.find((video: { type: string }) => video.type === 'Trailer') || null;
     const trailerKey = trailer ? trailer.key : null;
 
     return {
       props: {
         movie,
         cast,
-        director,
         trailerKey,
       },
     };
@@ -142,7 +127,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         movie: null,
         cast: [],
-        director: {},
         trailerKey: null,
       },
     };
