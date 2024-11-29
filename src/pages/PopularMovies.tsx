@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next';
 import React, { useState } from 'react';
-import MovieCard from '../components/Card/MovieCard'; // MovieCard bileşenini içe aktarıyoruz.
+import MovieCard from '../components/Card/MovieCard'; 
 import Navbar from "../components/NavBar/NavBar";
 
 

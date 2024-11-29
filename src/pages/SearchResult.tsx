@@ -12,8 +12,8 @@ interface MovieType {
 
 const SearchResult: React.FC = () => {
   const router = useRouter();
-  const { query } = router.query; // Arama sorgusu
-  const [movies, setMovies] = useState<MovieType[]>([]); // Türü belirlenmiş durum
+  const { query } = router.query; 
+  const [movies, setMovies] = useState<MovieType[]>([]); 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

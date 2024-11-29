@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app'; // AppProps'u içe aktar
+import { AppProps } from 'next/app'; 
 import { ApiProvider } from '../Context/ApiContext';
 import '../styles/global.css';
 

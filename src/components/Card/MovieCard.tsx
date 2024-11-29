@@ -17,9 +17,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, posterPath, overview, vote_av
           src={`https://image.tmdb.org/t/p/w780${posterPath}`}
           alt="Movie Poster"
           className="movie-poster"
-          width={300} // Genişlik ekleyin
-          height={450} // Yükseklik ekleyin
-          priority // Önemli görseller için ön yükleme sağlar (isteğe bağlı)
+          width={300} 
+          height={450} 
+          priority 
         />
         <span className="movie-rating">
           {vote_average !== undefined ? `${vote_average.toFixed(1)}` : 'Rating not available'}

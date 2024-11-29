@@ -47,7 +47,7 @@ const SearchBarIndex: React.FC<SearchBarIndexProps> = ({ onSearch }) => {
     type();
 
     return () => clearTimeout(timeout);
-  }, [pauseBetweenTexts, typingSpeed]); // Eklenmesi gereken bağımlılıklar
+  }, [pauseBetweenTexts, typingSpeed]); 
 
   return (
     <div className="relative w-full max-w-2xl">

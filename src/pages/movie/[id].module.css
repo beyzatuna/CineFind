@@ -102,13 +102,13 @@
   overflow-x: auto;
   gap: 20px;
   padding: 10px 0;
-  scroll-behavior: smooth; /* Yumuşak kaydırma */
+  scroll-behavior: smooth; 
 }
 
-/* Kaydırma çubuğunu özelleştir */
+
 .carousel::-webkit-scrollbar {
-  height: 8px; /* Yatay kaydırma çubuğu yüksekliği */
-  background-color: #0f0c0ca3; /* Arka plan rengi */
+  height: 8px; 
+  background-color: #0f0c0ca3;
 }
 
 .carousel::-webkit-scrollbar-thumb {
@@ -124,7 +124,7 @@
 .scrollButton {
   position: absolute;
   top: 50%;
-  background-color: rgba(93, 43, 43, 0.334); /* Şeffaf arkaplan */
+  background-color: rgba(93, 43, 43, 0.334); 
   border: none;
   color: rgba(42, 14, 14, 0.359);
   font-size: 1.5rem;
@@ -171,7 +171,7 @@
   }
 
   .actor {
-    width: 120px; /* Daha küçük genişlik */
+    width: 120px; 
   }
 
   .trailerVideo {
