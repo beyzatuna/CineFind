@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 body {
-  margin-left:  60px;
-  margin-right: 60px;
-  padding: 0;
+  margin: 0 auto; /* Ortalamak için */
+  padding: 0 60px; /* Margin yerine padding kullanımı */
   background-color: #121212;
   font-family: Arial, sans-serif;
   background-size: cover;
@@ -15,9 +14,10 @@ body {
 
 @media screen and (max-width: 768px) {
   body {
-    margin: 10px; 
+    padding: 10px; /* Esnek düzen sağlamak için */
   }
 }
+
 
 .hover\:text-gray-400:hover {
   color: #cccccc;

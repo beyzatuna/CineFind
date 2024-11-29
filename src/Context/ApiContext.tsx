@@ -1,10 +1,8 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
-// TMDB API Base URL ve Anahtar
 const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-// TMDB'den dönen popüler film verileri için tür
 interface Movie {
   id: number;
   title: string;

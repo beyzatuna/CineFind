@@ -2,7 +2,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import React, { useState } from 'react';
 import MovieCard from '../components/Card/MovieCard'; 
 import Navbar from "../components/NavBar/NavBar";
-
+import styles from '../components/Card/movieCard.module.css'; 
 
 interface Movie {
   id: number;
@@ -18,12 +18,11 @@ interface PopularMoviesProps {
 const PopularMovies: NextPage<PopularMoviesProps> = ({ popularMovies }) => {
   const [movies] = useState<Movie[]>(popularMovies);
 
-
   return (
     <div>
-     
       <Navbar />
-      <div className="movie-container">
+      {/* CSS modülünden gelen "movie-container" sınıfını kullanıyoruz */}
+      <div className={styles["movie-container"]}>
         {movies.map((movie) => (
           <MovieCard
             key={movie.id}

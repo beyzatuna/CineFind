@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import MovieCard from "../components/Card/MovieCard";
 import Navbar from "../components/NavBar/NavBar";
+import styles from '../components/Card/movieCard.module.css'; 
+
 
 interface MovieType {
   id: number;
@@ -49,7 +51,7 @@ const SearchResult: React.FC = () => {
       {loading ? (
         <p className="text-white">Loading...</p>
       ) : (
-        <div className="movie-container">
+        <div className={styles["movie-container"]}>
           {movies.map((movie) => (
             <MovieCard
               key={movie.id}
